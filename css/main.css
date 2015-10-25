@@ -893,6 +893,10 @@ body {
   margin: 5px 0 0;
   color: #f5f5f5;
 }
+.howru {
+  padding: 2px 2px;
+  bottom: 5px;
+}
 .site-description {
   margin-top: 5px;
   font-size: 14px;
@@ -961,7 +965,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffab42;
+  background: #ff8cff;
 }
 .sidebar-nav {
   margin: 0 0 20px;
