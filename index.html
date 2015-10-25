@@ -32,6 +32,8 @@
 <link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
+    <meta name="description" content="NET is kidding you" />
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -43,15 +45,15 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description">
+<meta name="description" content="NET is kidding you">
 <meta property="og:type" content="website">
 <meta property="og:title" content="NETK">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="NETK">
-<meta property="og:description">
+<meta property="og:description" content="NET is kidding you">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NETK">
-<meta name="twitter:description">
+<meta name="twitter:description" content="NET is kidding you">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -180,6 +182,98 @@
             
             
               
+                <a class="post-title-link" href="/2015/10/25/请修改你的DNS/" itemprop="url">
+                  请修改你的DNS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-25T18:02:35+08:00" content="2015-10-25">
+              2015-10-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>今天使用hexo + github搭建自己的博客，前两天本子忙于更新系统，<br>虽然El Capitan并没有什么特色…</p>
+<p>两件事之间本应没有什么联系，但是生于天朝，一直困扰着的网络问题确实无法避免。<br>Apple Store在天朝的反问速度用默认DNS简直是龟速，只能通过更换DNS服务器来解决问题<br>但是更换了DNS后，App Store访问速度的确快了，今天访问github灯网站的时候，又跪了…<br>于是又来更换回之前的DNS<br>哎生活在天朝，可能就是要长期的面对这样的问题吧…</p>
+<p>下面罗列了最近两天搜集的DNS地址，自己备忘在了印象笔记，夜拿出来一下吧</p>
+<ul>
+<li>Google DNS： 8.8.8.8 8.8.4.4<br>  我大G就不用介绍了，好记，好用（数年前…）</li>
+<li>OpenDNS提供的DNS服务器地址<br>  延迟有点高，在180ms左右，偶尔掉包，除了延迟大点，没有什么不能接受的。<br>  208.67.222.222<br>  208.67.220.220<br>  208.67.222.220<br>  208.67.220.222</li>
+<li>OpenerDNS：42.120.21.30<br>  该DNS是国内服务器，延迟在30ms左右，不掉包，速度非常好，该官方称使用该DNS能够无压力访问Facebook、Twitter、Google等服务，不过要使用https:// 加密链接。(当然我试过不行了…)</li>
+<li>114DNS，用他是因为他网官上的介绍：<br>  纯净 无劫持 无需再忍受被强扭去看广告或粗俗网站之痛苦<br>  服务地址为：114.114.114.114 和 114.114.115.115<br>  拦截 钓鱼病毒木马网站 增强网银、证券、购物、游戏、隐私信息安全<br>  服务地址为：114.114.114.119 和 114.114.115.119<br>  学校或家长可选拦截 色情网站 保护少年儿童免受网络色情内容的毒害<br>  服务地址为：114.114.114.110 和 114.114.115.110<br>  如果有上述需求的，可以考虑下，效果还可以，延迟基本上在10ms以下，速度很好。</li>
+<li>V2EX DNS：199.91.73.222 178.79.131.110<br>  延迟有点高，两个都在250ms以上，偶尔掉包，但这个用起来还是可以的。<br>  但是这是为Apple在中国特殊优化的DNS了<a href="http://www.zhihu.com/question/19754033" target="_blank" rel="external">知乎:用 V2EX DNS 从 App Store 下载为什么这么快？</a></li>
+<li>阿里DNS： 223.5.5.5 223.6.6.6<br>  虽然阿里最近跟耗子哥之间的矛盾夜愈发显得自己没什么节操，但是网友测试过延迟在25ms左右，基本不掉包，速度可以保证，如果不恶心阿的同学是可以考虑的，毕竟是国内的，访问速度可以保证的。</li>
+<li>OneDNS：112.124.47.27 114.215.126.16<br>  官方说是可以屏蔽广告，加速Google等网站的访问等，我大概试了一下，效果还是有的，速度也不慢，是一个比较新的DNS，只有单节点，不过看官方应该在努力建设中，在我这里的延迟大概在30ms左右。</li>
+<li>OpenNIC DNS 官网：<a href="http://www.opennicproject.org/" target="_blank" rel="external">http://www.opennicproject.org/</a><br>  OpenNic是一个社区化的非营利组织，主张DNS中立、免费服务、用户决议、自由开放、保护隐私、拒绝劫持。访问官网，会自动向你推荐最适合你所在区域的DNS。</li>
+<li>Norton（诺顿）DNS 198.153.192.50 198.153.194.50<br>  之前在用PC机的时候，诺顿的杀毒还是用过好几年的，毕竟资深安全厂商，安全性和稳定性有保障。换到Mac下之后，就没关注过了，也不知道还有个DNS服务器</li>
+<li>Comodo Secure DNS（科莫多提供） 8.26.56.26 8.20.247.20<br>  资深安全厂商，安全性和稳定性有保障。</li>
+</ul>
+<p>对了，忘了说下ISP的DNS了，我位于上海，家里联通网络，上海联通的DNS为：210.22.70.3，还有几个其他的，大家自己搜搜吧</p>
+<p>至于我现在自己使用的DNS，是来回切换中….</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2015/10/25/快看我/" itemprop="url">
                   快看我
                 </a>
@@ -279,11 +373,11 @@
           <img class="site-author-image" src="uploads/avatar.jpg" alt="NETkiddy" itemprop="image"/>
           <p class="site-author-name" itemprop="name">NETkiddy</p>
         </div>
-        <p class="site-description motion-element" itemprop="description"></p>
+        <p class="site-description motion-element" itemprop="description">NET is kidding you</p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
