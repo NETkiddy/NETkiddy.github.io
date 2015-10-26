@@ -36,7 +36,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="cpp," />
 
 
 
@@ -45,15 +45,22 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="NET is kidding you">
-<meta property="og:type" content="website">
-<meta property="og:title" content="NETK">
-<meta property="og:url" content="http://netkiddy.github.io/index.html">
+<meta name="description" content="通过本篇文章的阅读，可以安全的解决了c++代码中经常遇到的类型转换问题.当然，各种类型之间转换的方法很多，从而也就会很乱。但是，通过本文的阅读，完全可以以后在任何项目中，首先实现一个自己的转换函数，这样岂不是很美妙～
+首先，为了实现上述的目的，我们要介绍一个类型：stringstream
+库定义了三种类：istringstream、ostringstream和stringstream，分别用来进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stringstream与c++的类型转换">
+<meta property="og:url" content="http://netkiddy.github.io/2015/10/27/stringstream与c-的类型转换/index.html">
 <meta property="og:site_name" content="NETK">
-<meta property="og:description" content="NET is kidding you">
+<meta property="og:description" content="通过本篇文章的阅读，可以安全的解决了c++代码中经常遇到的类型转换问题.当然，各种类型之间转换的方法很多，从而也就会很乱。但是，通过本文的阅读，完全可以以后在任何项目中，首先实现一个自己的转换函数，这样岂不是很美妙～
+首先，为了实现上述的目的，我们要介绍一个类型：stringstream
+库定义了三种类：istringstream、ostringstream和stringstream，分别用来进行">
+<meta property="og:updated_time" content="2015-10-26T16:32:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NETK">
-<meta name="twitter:description" content="NET is kidding you">
+<meta name="twitter:title" content="stringstream与c++的类型转换">
+<meta name="twitter:description" content="通过本篇文章的阅读，可以安全的解决了c++代码中经常遇到的类型转换问题.当然，各种类型之间转换的方法很多，从而也就会很乱。但是，通过本文的阅读，完全可以以后在任何项目中，首先实现一个自己的转换函数，这样岂不是很美妙～
+首先，为了实现上述的目的，我们要介绍一个类型：stringstream
+库定义了三种类：istringstream、ostringstream和stringstream，分别用来进行">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -65,7 +72,7 @@
 
 
 
-  <title> NETK </title>
+  <title> stringstream与c++的类型转换 | NETK </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -86,9 +93,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -164,9 +169,9 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div id="content" class="content"> 
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -182,9 +187,7 @@
             
             
               
-                <a class="post-title-link" href="/2015/10/27/stringstream与c-的类型转换/" itemprop="url">
-                  stringstream与c++的类型转换
-                </a>
+                stringstream与c++的类型转换
               
             
           </h1>
@@ -239,10 +242,7 @@
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>通过本篇文章的阅读，可以安全的解决了c++代码中经常遇到的类型转换问题.<br>当然，各种类型之间转换的方法很多，从而也就会很乱。<br>但是，通过本文的阅读，完全可以以后在任何项目中，首先实现一个自己的转换函数，这样岂不是很美妙～</p>
+        <span itemprop="articleBody"><p>通过本篇文章的阅读，可以安全的解决了c++代码中经常遇到的类型转换问题.<br>当然，各种类型之间转换的方法很多，从而也就会很乱。<br>但是，通过本文的阅读，完全可以以后在任何项目中，首先实现一个自己的转换函数，这样岂不是很美妙～</p>
 <p>首先，为了实现上述的目的，我们要介绍一个类型：<a href="http://www.cplusplus.com/reference/sstream/stringstream/" target="_blank" rel="external">stringstream</a></p>
 <p><sstream>库定义了三种类：istringstream、ostringstream和stringstream，分别用来进行流的输入、输出和输入输出操作。<br>本文主要介绍下stringstream。</sstream></p>
 <p>让我们先来看一个简单的例子</p>
@@ -259,237 +259,63 @@
 <p>这样，通过使用convert()：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> d;</span><br><span class="line"><span class="built_in">string</span> salary;</span><br><span class="line"><span class="built_in">string</span> s = ”<span class="number">12.56</span>”;</span><br><span class="line">d = convert&lt;<span class="keyword">double</span>&gt;(s);<span class="comment">//d等于12.56</span></span><br><span class="line">salary = convert&lt;<span class="built_in">string</span>&gt;(<span class="number">9000.0</span>);<span class="comment">//salary等于”9000”</span></span><br></pre></td></tr></table></figure></p>
 <p>P.S.<br>函数模板日常项目中，自己使用的真的不多，明天得好好补补了</p>
 <h4 id="额外的fstream与stringstream">额外的<strong>fstream与stringstream</strong></h4><p>今晚，在写一个小程序修复上周的bug时，再次用到了stringstream，<br>主要涉及的是文件的读写，下面简单列出代码和注释。<br>中间使用了stringstream作为中介，ifstream和ofstream的介绍不再多说(下一篇博客说吧)<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">stringstream ss<span class="comment">;</span></span><br><span class="line">string s<span class="comment">;</span></span><br><span class="line">ifstream ifs<span class="comment">;</span></span><br><span class="line">ofstream ofs<span class="comment">;</span></span><br><span class="line">ifs.open("log.txt", ios<span class="number">::</span>in)<span class="comment">;//ios::in表示是读打开</span></span><br><span class="line">ofs.open("sql.txt", ios<span class="number">::</span>out)<span class="comment">;//写打开</span></span><br><span class="line">if(ifs.good() &amp;&amp; ofs.good())</span><br><span class="line">&#123;</span><br><span class="line">	ss&lt;&lt;ifs.rdbuf()<span class="comment">;//存储到ss中</span></span><br><span class="line">	s = ss.str()<span class="comment">;//获得字符串string</span></span><br><span class="line">	processString(s)<span class="comment">;//表示处理字符串函数</span></span><br><span class="line"></span><br><span class="line">	ofs.write(s.c_str(), s.size())<span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ifs.close()<span class="comment">;</span></span><br><span class="line">ofs.close()<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-
-            
-          </span>
-        
+</span>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/10/25/请修改你的DNS/" itemprop="url">
-                  请修改你的DNS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-10-25T18:02:35+08:00" content="2015-10-25">
-              2015-10-25
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术科普/" itemprop="url" rel="index">
-                    <span itemprop="name">技术科普</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/cpp/" rel="tag">#cpp</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/25/请修改你的DNS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/25/请修改你的DNS/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <p>今天使用hexo + github搭建自己的博客，前两天本子忙于更新系统，<br>虽然El Capitan并没有什么特色…</p>
-<p>两件事之间本应没有什么联系，但是生于天朝，一直困扰着的网络问题确实无法避免。<br>Apple Store在天朝的反问速度用默认DNS简直是龟速，只能通过更换DNS服务器来解决问题<br>但是更换了DNS后，App Store访问速度的确快了，今天访问github灯网站的时候，又跪了…<br>于是又来更换回之前的DNS<br>哎生活在天朝，可能就是要长期的面对这样的问题吧…</p>
-<p>下面罗列了最近两天搜集的DNS地址，自己备忘在了印象笔记，也拿出来与大家分享下吧～</p>
-<ul>
-<li>Google DNS： 8.8.8.8 8.8.4.4<br>  我大G就不用介绍了，好记，好用(数年前…)</li>
-<li>OpenDNS提供的DNS服务器地址<br>  延迟有点高，在180ms左右，偶尔掉包，除了延迟大点，没有什么不能接受的。<br>  208.67.222.222<br>  208.67.220.220<br>  208.67.222.220<br>  208.67.220.222</li>
-<li>OpenerDNS：42.120.21.30<br>  该DNS是国内服务器，延迟在30ms左右，不掉包，速度非常好，该官方称使用该DNS能够无压力访问Facebook、Twitter、Google等服务，不过要使用https:// 加密链接。(当然我试过不行了…)</li>
-<li>114DNS，用他是因为他网官上的介绍：<br>  纯净 无劫持 无需再忍受被强扭去看广告或粗俗网站之痛苦<br>  服务地址为：114.114.114.114 和 114.114.115.115<br>  拦截 钓鱼病毒木马网站 增强网银、证券、购物、游戏、隐私信息安全<br>  服务地址为：114.114.114.119 和 114.114.115.119<br>  学校或家长可选拦截 色情网站 保护少年儿童免受网络色情内容的毒害<br>  服务地址为：114.114.114.110 和 114.114.115.110<br>  如果有上述需求的，可以考虑下，效果还可以，延迟基本上在10ms以下，速度很好。</li>
-<li>V2EX DNS：199.91.73.222 178.79.131.110<br>  延迟有点高，两个都在250ms以上，偶尔掉包，但这个用起来还是可以的。<br>  但是这是为Apple在中国特殊优化的DNS了。<a href="http://www.zhihu.com/question/19754033" target="_blank" rel="external">知乎:用 V2EX DNS 从 App Store 下载为什么这么快？</a></li>
-<li>阿里DNS： 223.5.5.5 223.6.6.6<br>  虽然最近<a href="http://www.zhihu.com/question/30778071" target="_blank" rel="external">阿里跟耗子哥之间的矛盾</a>也愈发显得自己没什么节操，但是网友测试过延迟在25ms左右，基本不掉包，速度可以保证，如果不恶心阿的同学是可以考虑的，毕竟是国内的，访问速度可以保证的。</li>
-<li>OneDNS：112.124.47.27 114.215.126.16<br>  官方说是可以屏蔽广告，加速Google等网站的访问等，我大概试了一下，效果还是有的，速度也不慢，是一个比较新的DNS，只有单节点，不过看官方应该在努力建设中，在我这里的延迟大概在30ms左右。</li>
-<li>OpenNIC DNS 官网：<a href="http://www.opennicproject.org/" target="_blank" rel="external">http://www.opennicproject.org/</a><br>  OpenNic是一个社区化的非营利组织，主张DNS中立、免费服务、用户决议、自由开放、保护隐私、拒绝劫持。访问官网，会自动向你推荐最适合你所在区域的DNS。</li>
-<li>Norton（诺顿）DNS 198.153.192.50 198.153.194.50<br>  之前在用PC机的时候，诺顿的杀毒还是用过好几年的，毕竟资深安全厂商，安全性和稳定性有保障。换到Mac下之后，就没关注过了，也不知道还有个DNS服务器</li>
-<li>Comodo Secure DNS（科莫多提供） 8.26.56.26 8.20.247.20<br>  资深安全厂商，安全性和稳定性有保障。</li>
-</ul>
-<p>对了，忘了说下ISP的DNS了，我位于上海，家里联通网络，上海联通的DNS为：210.22.70.3，还有几个其他的，大家自己搜搜吧</p>
-<p>至于我现在自己使用的DNS，是来回切换中….</p>
-
+              <a href="/2015/10/25/请修改你的DNS/" rel="next" title="请修改你的DNS">
+                <i class="fa fa-chevron-left"></i> 请修改你的DNS
+              </a>
             
-          </span>
-        
-      
-    </div>
+          </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                <a class="post-title-link" href="/2015/10/25/快看我/" itemprop="url">
-                  快看我
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-10-25T16:21:25+08:00" content="2015-10-25">
-              2015-10-25
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/25/快看我/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/25/快看我/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <ul>
-<li>title: 这是第一篇博客</li>
-<li>content: 博客主要关注<font color="#003399" size="3" face="黑体">技术问题的解决</font>与<font color="#ff3366" size="3" face="黑体">有趣玩意儿的推广</font></li>
-<li>github: <a href="https://github.com/NETkiddy" target="_blank" rel="external">NETkiddy</a></li>
-<li>poweredby: <a href="https://hexo.io" target="_blank" rel="external">hexo</a></li>
-</ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
  </div>
 
         
+            <!-- 多说热评文章-->
+            <p>热评文章</p>
+            <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+        
 
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/10/27/stringstream与c-的类型转换/"
+                   data-title="stringstream与c++的类型转换" data-url="http://netkiddy.github.io/2015/10/27/stringstream与c-的类型转换/">
+              </div>
+            
+          </div>
         
       </div>
 
@@ -510,8 +336,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="uploads/avatar.jpg" alt="NETkiddy" itemprop="image"/>
           <p class="site-author-name" itemprop="name">NETkiddy</p>
@@ -573,6 +408,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#stringstream到string的转换"><span class="nav-number">1.</span> <span class="nav-text">stringstream到string的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#string到int的转换"><span class="nav-number">2.</span> <span class="nav-text">string到int的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#int到string的转换"><span class="nav-number">3.</span> <span class="nav-text">int到string的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#char＊的转换"><span class="nav-number">4.</span> <span class="nav-text">char＊的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多次使用stringstream的注意"><span class="nav-number">5.</span> <span class="nav-text">多次使用stringstream的注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#再进一步"><span class="nav-number">6.</span> <span class="nav-text">再进一步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#额外的fstream与stringstream"><span class="nav-number">7.</span> <span class="nav-text">额外的fstream与stringstream</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
       
 
 
@@ -661,6 +507,167 @@
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   <script type="text/javascript">
     $(document).ready(function () {
